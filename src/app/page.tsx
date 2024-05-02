@@ -1,26 +1,25 @@
-"use client";
+import { getAllBooks } from "../app/lib/book";
 
-import { useEffect, useState } from "react";
+export default async function Home() {
+  const allBooks = await getAllBooks();
+  // const [allBooks, setAllBooks] = useState([]);
 
-export default function Home() {
-  const [allBooks, setAllBooks] = useState([]);
+  // useEffect(() => {
+  //   getAllBooks();
+  // }, []);
 
-  useEffect(() => {
-    getAllBooks();
-  }, []);
-
-  async function getAllBooks() {
-    try {
-      const response = await fetch("https://fakerapi.it/api/v1/books");
-      if (response.ok) {
-        const { data } = await response.json();
-        console.log("responseData", data);
-        setAllBooks(data);
-      }
-    } catch (error) {
-      console.log("fetching error", error);
-    }
-  }
+  // async function getAllBooks() {
+  //   try {
+  //     const response = await fetch("https://fakerapi.it/api/v1/books");
+  //     if (response.ok) {
+  //       const { data } = await response.json();
+  //       console.log("responseData", data);
+  //       setAllBooks(data);
+  //     }
+  //   } catch (error) {
+  //     console.log("fetching error", error);
+  //   }
+  // }
 
   return (
     <div className="overflow-x-auto">
@@ -80,3 +79,4 @@ export default function Home() {
     </div>
   );
 }
+
